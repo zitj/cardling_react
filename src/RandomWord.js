@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Card from './Card';
+import { WordsContext } from './WordContainer';
 
-const RandomWord = ({ words }) => {
+const RandomWord = () => {
+	const { words } = useContext(WordsContext);
 	let [wordCounter, setWordCounter] = useState(0);
 	const [wordPresented, setPresentedWord] = useState(words[0]);
 	const shuffleArray = (array) => {
