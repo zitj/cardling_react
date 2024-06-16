@@ -20,8 +20,14 @@ const WordsContainer = ({ children }) => {
 		fetchWords();
 	}, []);
 
-	const addWord = (newWord) => {
-		setWords([...words, newWord]);
+	const addWord = async (newWord) => {
+		try {
+			const response = await axios.post('http://localhost:3000/words', newWord);
+			const updatedWords = [...words, response.data];
+			setWords(updatedWords);
+		} catch (error) {
+			console.error('Error adding word:', error);
+		}
 	};
 
 	return <WordsContext.Provider value={{ words, addWord }}>{children}</WordsContext.Provider>;

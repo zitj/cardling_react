@@ -27,22 +27,12 @@ const AddWord = () => {
 		};
 
 		try {
-			const response = await fetch('http://localhost:3000/words', {
-				// Update the URL as needed
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(newWord),
-			});
-
-			if (response.ok) {
-				// Handle successful response
-				console.log('Word added successfully');
-			} else {
-				// Handle error response
-				console.error('Failed to add word');
-			}
+			await addWord(newWord);
+			// Clear input fields after successful submission
+			setWord('');
+			setTranslation('');
+			setContext('');
+			setSource('');
 		} catch (error) {
 			console.error('Error:', error);
 		}
