@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Navigation from './Navigation';
 import AppRoutes from './Routes';
 import { BrowserRouter as Router } from 'react-router-dom';
-import WordsContainer from './WordContainer';
+import { useDispatch } from 'react-redux';
+import { fetchWords } from './reducers/wordsSlice';
 
 function App() {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchWords());
+	}, [dispatch]);
+
 	return (
 		<Router>
-			<WordsContainer>
-				<div className="App">
-					<h1>Cardling app</h1>
-					<Navigation />
-					<AppRoutes />
-				</div>
-			</WordsContainer>
+			<div className="App">
+				<h1>Cardling app</h1>
+				<Navigation />
+				<AppRoutes />
+			</div>
 		</Router>
 	);
 }

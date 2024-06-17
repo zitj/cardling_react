@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import { WordsContext } from './WordContainer';
+import { useSelector } from 'react-redux';
 
 const RandomWord = () => {
-	const { words } = useContext(WordsContext);
+	const words = useSelector((state) => state.words.words);
 	let [wordCounter, setWordCounter] = useState(0);
 	const [wordPresented, setPresentedWord] = useState(words[0]);
 	const shuffleArray = (array) => {

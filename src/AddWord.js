@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { WordsContext } from './WordContainer';
-
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addWord } from './reducers/wordsSlice';
 const AddWord = () => {
-	const { addWord } = useContext(WordsContext);
+	const dispatch = useDispatch();
 	const [word, setWord] = useState('');
 	const [context, setContext] = useState('');
 	const [translation, setTranslation] = useState('');
@@ -27,7 +27,7 @@ const AddWord = () => {
 		};
 
 		try {
-			await addWord(newWord);
+			await dispatch(addWord(newWord)).unwrap();
 			// Clear input fields after successful submission
 			setWord('');
 			setTranslation('');
